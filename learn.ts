@@ -153,8 +153,53 @@ interface IPost{
     id:number,
     title:string,
     desc:string
-    extra:IPost[] | ICategory
+    extra:IAuth[] | ICategory
 }
+interface IpostBetter<T>{
+    id:number,
+    title:string,
+    desc:string
+    extra:T[]
+}
+        // as string
+const testMeAsString:IpostBetter<string>={
+    id:1,
+    title:"Post Title",
+    desc:'Post desc',
+    extra:["Raissi","Anass"]  //cause it declared as array and using string inside it.
+}
+            // as obj
+interface IpostEvenBetter<T extends object>{
+    id:number,
+    title:string,
+    desc:string
+    extra:T[];
+}
+const testMeAsObject:IpostEvenBetter<{id:number,username:string}>={
+    id:1,
+    title:"Post Title",
+    desc:'Post desc',
+    extra:[{id:1,username:"Raissi Anass"}]  //cause it declared as array and using obj inside it.
+}
+             // as interface
+
+             const testMeAsInterface:IpostEvenBetter<IAuth>={
+                id:1,
+                title:"Post Title",
+                desc:'Post desc',
+                extra:[{id:1,username:"Raissi Anass"}]  //cause it declared as array and using IAuth interface element inside it.
+            }
+
+             const testMeAsInterface2:IpostEvenBetter<ICategory>={
+                id:1,
+                title:"Post Title",
+                desc:'Post desc',
+                extra:[{id:1,username:"Raissi Anass"}]  //cause it declared as array and using ICategory interface element inside it.
+            }
+            
+
+
+
 
 
 
